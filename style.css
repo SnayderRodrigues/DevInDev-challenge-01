@@ -110,11 +110,12 @@ textarea:focus-visible {
   right: 0;
   z-index: 2;
   background-color: #2b2d31;
-  transform: translateY(100%);
+  transform: translateX(100%);
+  transition: transform 300ms ease-in-out;
 }
 
 .sidebar.open {
-  transform: translateY(0%);
+  transform: translateX(0%);
 }
 
 .sidebar__drop-shadow {
@@ -125,7 +126,7 @@ textarea:focus-visible {
   left: 50%;
   z-index: 1;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.5);
   filter: blur(4px);
   user-select: none;
   visibility: hidden;
@@ -214,14 +215,14 @@ textarea:focus-visible {
   border-radius: 0.5rem;
 }
 
-.sidebar__form div:nth-of-type(3) .close-button:hover {
+.sidebar__form div:nth-of-type(3) .form__close-button:hover {
   background-color: #444444;
 }
 
-.sidebar__form div:nth-of-type(3) .save-button {
+.sidebar__form div:nth-of-type(3) .form__save-button {
   background-color: #1d46ca;
 }
 
-.sidebar__form div:nth-of-type(3) .save-button:hover {
+.sidebar__form div:nth-of-type(3) .form__save-button:hover {
   background-color: #11276e;
 }
