@@ -35,7 +35,6 @@ formSaveButton.addEventListener("click", (event) => {
   const taskName = taskNameInput.value.trim();
   const taskDescription = taskDescriptionInput.value.trim();
 
-  
   if (taskName) {
     const taskItem = document.createElement("div");
     taskItem.classList.add("tasks__item");
@@ -91,5 +90,16 @@ document.addEventListener("click", (event) => {
   if (event.target.closest(".tasks__item-header")) {
     const header = event.target.closest(".tasks__item-header");
     header.classList.toggle("check");
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".tasks__item-delete-button")) {
+    const taskItem = event.target.closest(".tasks__item");
+    tasksContent.removeChild(taskItem);
+
+    if (tasksContent.children.length === 0 && tasksContentEmpty) {
+      tasksContentEmpty.style.display = "flex";
+    }
   }
 });
