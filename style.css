@@ -1,3 +1,20 @@
+:root {
+  --white: #ffffff;
+
+  --gray-400: #bdbdbd;
+  --gray-500: #989898;
+  --gray-600: #535353;
+
+  --black-300: #444444;
+  --black-400: #3c4043;
+  --black-600: #35373c;
+  --black-700: #2b2d31;
+
+  --blue-300: #4772fa;
+  --blue-400: #1d46ca;
+  --blue-600: #11276e;
+}
+
 *,
 ::after,
 ::before {
@@ -7,12 +24,12 @@
 body {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
-  color: #ffffff;
+  color: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 7.375rem;
-  background-color: #2b2d31;
+  background-color: var(--black-700);
   overflow-x: hidden;
 }
 
@@ -65,7 +82,7 @@ textarea:focus-visible {
 
 .tasks__header {
   width: 100%;
-  border-bottom: 1px solid #3c4043;
+  border-bottom: 1px solid var(--black-400);
 }
 
 .tasks__header h1 {
@@ -91,7 +108,7 @@ textarea:focus-visible {
 
 .tasks__content-empty span:nth-of-type(2) {
   font-size: 0.875rem;
-  color: #bdbdbd;
+  color: var(--gray-400);
 }
 
 .tasks__content {
@@ -108,12 +125,12 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border-bottom: 1px solid #3c4043;
+  border-bottom: 1px solid var(--black-400);
   position: relative;
 }
 
 .tasks__item:hover {
-  background-color: #35373c;
+  background-color: var(--black-600);
 }
 
 .tasks__item-header {
@@ -168,7 +185,7 @@ textarea:focus-visible {
 
 .tasks__item-info p {
   font-size: 0.75rem;
-  color: #bdbdbd;
+  color: var(--gray-400);
 }
 
 .tasks__item-delete-button {
@@ -180,23 +197,23 @@ textarea:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  color: #989898;
+  color: var(--gray-500);
   width: 100%;
   padding: 1.5rem 0;
-  border: 0.125rem solid #989898;
+  border: 0.125rem solid var(--gray-500);
   border-style: dashed;
   border-radius: 0.5rem;
   margin-bottom: 5rem;
 }
 
 .tasks__button:hover {
-  color: #ffffff;
-  border: 0.125rem solid #ffffff;
+  color: var(--white);
+  border: 0.125rem solid var(--white);
   border-style: dashed;
 }
 
 .tasks__button:hover svg path {
-  stroke: #ffffff;
+  stroke: var(--white);
 }
 
 .sidebar {
@@ -205,7 +222,7 @@ textarea:focus-visible {
   top: 0;
   right: 0;
   z-index: 2;
-  background-color: #2b2d31;
+  background-color: var(--black-700);
   transform: translateX(100%);
   transition: transform 300ms ease-in-out;
 }
@@ -249,11 +266,13 @@ textarea:focus-visible {
   right: 3rem;
   width: 2rem;
   height: 2rem;
-  border-radius: 0.25rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 200ms ease-in-out;
 }
 
 .sidebar__close-button:hover {
-  background-color: #444444;
+  background-color: var(--black-300);
 }
 
 .sidebar__header {
@@ -266,7 +285,7 @@ textarea:focus-visible {
 }
 
 .sidebar__header span:first-of-type {
-  color: #bdbdbd;
+  color: var(--gray-400);
 }
 
 .sidebar__header span:nth-of-type(2) {
@@ -278,6 +297,9 @@ textarea:focus-visible {
   flex-direction: column;
   gap: 2rem;
 }
+.sidebar__form div:first-of-type label span {
+  color: var(--blue-300);
+}
 
 .sidebar__form div:first-of-type,
 .sidebar__form div:nth-of-type(2) {
@@ -288,9 +310,9 @@ textarea:focus-visible {
 
 .sidebar__form div input,
 .sidebar__form div textarea {
-  background-color: #35373c;
+  background-color: var(--black-600);
   padding: 0.625rem 1rem;
-  border: 1px solid #535353;
+  border: 1px solid var(--gray-600);
   border-radius: 0.5rem;
 }
 
@@ -310,16 +332,17 @@ textarea:focus-visible {
 .sidebar__form div:nth-of-type(3) button {
   padding: 1rem 2rem;
   border-radius: 0.5rem;
+  transition: background-color 200ms ease-in-out;
 }
 
 .sidebar__form div:nth-of-type(3) .form__close-button:hover {
-  background-color: #444444;
+  background-color: var(--black-300);
 }
 
 .sidebar__form div:nth-of-type(3) .form__save-button {
-  background-color: #1d46ca;
+  background-color: var(--blue-400);
 }
 
 .sidebar__form div:nth-of-type(3) .form__save-button:hover {
-  background-color: #11276e;
+  background-color: var(--blue-600);
 }

@@ -72,6 +72,13 @@ formSaveButton.addEventListener("click", (event) => {
   const taskName = taskNameInput.value.trim();
   const taskDescription = taskDescriptionInput.value.trim();
 
+  if (!taskName) {
+    taskNameInput.style.outline = "2px solid red";
+    return;
+  } else {
+    taskNameInput.style.outline = "none";
+  }
+
   if (taskName) {
     if (editingTaskItem) {
       const taskInfo = editingTaskItem.querySelector(".tasks__item-info");
@@ -126,5 +133,3 @@ formSaveButton.addEventListener("click", (event) => {
     sidebarDropShadow.classList.remove("open");
   }
 });
-
-//next: change the sidebar header title, animations, tootips for buttons, responsive, local storage
