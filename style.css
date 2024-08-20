@@ -29,6 +29,7 @@ button {
   font-size: inherit;
   color: inherit;
   background: none;
+  padding: 0;
   border: none;
   outline: none;
   cursor: pointer;
@@ -107,7 +108,7 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1.5rem;
+  /* padding: 1rem 1.5rem; */
   border-bottom: 1px solid #3c4043;
   position: relative;
 }
@@ -116,14 +117,12 @@ textarea:focus-visible {
   background-color: #35373c;
 }
 
-.tasks__item input[type="checkbox"] {
-  position: absolute;
-  width: 1.5rem;
-  height: 1.5rem;
-  opacity: 0;
-  overflow: hidden;
-  z-index: 99;
+.tasks__item-header {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
   cursor: pointer;
+  padding: 1rem 0 1rem 1.5rem;
 }
 
 .tasks__item-checkbox {
@@ -138,32 +137,41 @@ textarea:focus-visible {
   transform: translate(-50%, -50%);
 }
 
-.tasks__item input[type="checkbox"]:checked + .tasks__item-checkbox img {
+.tasks__item-header.check > .tasks__item-checkbox img {
   opacity: 1;
 }
 
-.tasks__item input[type="checkbox"]:checked + .tasks__item-checkbox svg path {
+.tasks__item-header.check > .tasks__item-checkbox svg path {
   fill: #4772fa;
 }
 
 .tasks__item-info {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  padding-left: 1rem;
+}
+
+.tasks__item-info.has-description {
   gap: 0.25rem;
 }
 
-.tasks__item input[type="checkbox"]:checked ~ .tasks__item-info > * {
+.tasks__item-header.check > .tasks__item-info > * {
   text-decoration: line-through;
+}
+
+.tasks__item-info h3 {
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .tasks__item-info p {
   font-size: 0.75rem;
+  color: #bdbdbd;
 }
 
-/* .tasks__item-edit-button, .tasks__item-delete-button {
-  cursor: pointer;
-} */
+.tasks__item-delete-button {
+  margin-right: 1.5rem;
+}
 
 .tasks__button {
   display: flex;
@@ -191,7 +199,6 @@ textarea:focus-visible {
 
 .sidebar {
   height: 100vh;
-  /* max-height: 100%; */
   position: fixed;
   top: 0;
   right: 0;
@@ -294,7 +301,7 @@ textarea:focus-visible {
 .sidebar__form div:nth-of-type(3) {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.75rem;
   align-self: flex-end;
 }
 
