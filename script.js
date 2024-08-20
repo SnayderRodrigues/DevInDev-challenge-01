@@ -6,6 +6,7 @@ const formCloseButton = document.querySelector(".form__close-button");
 const formSaveButton = document.querySelector(".form__save-button");
 const tasksContent = document.querySelector(".tasks__content");
 const tasksContentEmpty = document.querySelector(".tasks__content-empty");
+const taskTitle = document.querySelector("#taskTitle");
 const taskNameInput = document.querySelector("#taskName");
 const taskDescriptionInput = document.querySelector("#taskDescription");
 
@@ -15,6 +16,7 @@ tasksButton.addEventListener("click", () => {
   sidebar.classList.add("open");
   sidebarDropShadow.classList.add("open");
   editingTaskItem = null;
+  taskTitle.textContent = "";
   taskNameInput.value = "";
   taskDescriptionInput.value = "";
 });
@@ -32,6 +34,36 @@ tasksCloseButton.addEventListener("click", () => {
 formCloseButton.addEventListener("click", () => {
   sidebar.classList.remove("open");
   sidebarDropShadow.classList.remove("open");
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".tasks__item-header")) {
+    const header = event.target.closest(".tasks__item-header");
+    header.classList.toggle("check");
+  }
+
+  if (event.target.closest(".tasks__item-delete-button")) {
+    const taskItem = event.target.closest(".tasks__item");
+    tasksContent.removeChild(taskItem);
+
+    if (tasksContent.children.length === 0 && tasksContentEmpty) {
+      tasksContentEmpty.style.display = "flex";
+    }
+  }
+
+  if (event.target.closest(".tasks__item-edit-button")) {
+    const taskItem = event.target.closest(".tasks__item");
+    const taskName = taskItem.querySelector("h3").textContent;
+    const taskDescription = taskItem.querySelector("p").textContent;
+
+    editingTaskItem = taskItem;
+    taskTitle.textContent = taskName;
+    taskNameInput.value = taskName;
+    taskDescriptionInput.value = taskDescription;
+
+    sidebar.classList.add("open");
+    sidebarDropShadow.classList.add("open");
+  }
 });
 
 formSaveButton.addEventListener("click", (event) => {
@@ -95,34 +127,4 @@ formSaveButton.addEventListener("click", (event) => {
   }
 });
 
-document.addEventListener("click", (event) => {
-  if (event.target.closest(".tasks__item-header")) {
-    const header = event.target.closest(".tasks__item-header");
-    header.classList.toggle("check");
-  }
-
-  if (event.target.closest(".tasks__item-delete-button")) {
-    const taskItem = event.target.closest(".tasks__item");
-    tasksContent.removeChild(taskItem);
-
-    if (tasksContent.children.length === 0 && tasksContentEmpty) {
-      tasksContentEmpty.style.display = "flex";
-    }
-  }
-
-  if (event.target.closest(".tasks__item-edit-button")) {
-    const taskItem = event.target.closest(".tasks__item");
-    const taskName = taskItem.querySelector("h3").textContent;
-    const taskDescription = taskItem.querySelector("p").textContent;
-
-    editingTaskItem = taskItem;
-    taskNameInput.value = taskName;
-    taskDescriptionInput.value = taskDescription;
-
-    sidebar.classList.add("open");
-    sidebarDropShadow.classList.add("open");
-  }
-});
-
-//changes: edit task feature, update task check images, fix task item info gap on description status
 //next: change the sidebar header title, animations, tootips for buttons, responsive, local storage
