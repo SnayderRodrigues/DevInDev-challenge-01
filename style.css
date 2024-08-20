@@ -1,3 +1,9 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
@@ -5,10 +11,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding-top: 7.375rem;
   background-color: #2b2d31;
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p {
+  padding: 0;
+  margin: 0;
 }
 
 button {
@@ -25,7 +38,9 @@ input,
 textarea {
   border: 0;
   padding: 0;
+  margin: 0;
   font-family: inherit;
+  font-size: inherit;
   color: inherit;
 }
 
@@ -36,7 +51,7 @@ textarea:focus-visible {
 }
 
 .logo {
-  margin-bottom: 12.375rem;
+  margin-bottom: 5rem;
 }
 
 .tasks {
@@ -50,7 +65,6 @@ textarea:focus-visible {
 .tasks__header {
   width: 100%;
   border-bottom: 1px solid #3c4043;
-  margin-bottom: 5rem;
 }
 
 .tasks__header h1 {
@@ -60,24 +74,96 @@ textarea:focus-visible {
   margin-bottom: 1.25rem;
 }
 
-.tasks__content {
+.tasks__content-empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5rem;
+  margin: 5rem 0;
 }
 
-.tasks__content span:first-of-type {
+.tasks__content-empty span:first-of-type {
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
 }
 
-.tasks__content span:nth-of-type(2) {
+.tasks__content-empty span:nth-of-type(2) {
   font-size: 0.875rem;
   color: #bdbdbd;
 }
+
+.tasks__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tasks__content:not(:empty) {
+  margin: 3rem 0;
+}
+
+.tasks__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #3c4043;
+  position: relative;
+}
+
+.tasks__item:hover {
+  background-color: #35373c;
+}
+
+.tasks__item input[type="checkbox"] {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0;
+  overflow: hidden;
+  z-index: 99;
+  cursor: pointer;
+}
+
+.tasks__item-checkbox {
+  position: relative;
+}
+
+.tasks__item-checkbox > img {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tasks__item input[type="checkbox"]:checked + .tasks__item-checkbox img {
+  opacity: 1;
+}
+
+.tasks__item input[type="checkbox"]:checked + .tasks__item-checkbox svg path {
+  fill: #4772fa;
+}
+
+.tasks__item-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tasks__item input[type="checkbox"]:checked ~ .tasks__item-info > * {
+  text-decoration: line-through;
+}
+
+.tasks__item-info p {
+  font-size: 0.75rem;
+}
+
+/* .tasks__item-edit-button, .tasks__item-delete-button {
+  cursor: pointer;
+} */
 
 .tasks__button {
   display: flex;
@@ -90,6 +176,7 @@ textarea:focus-visible {
   border: 0.125rem solid #989898;
   border-style: dashed;
   border-radius: 0.5rem;
+  margin-bottom: 5rem;
 }
 
 .tasks__button:hover {
@@ -104,8 +191,8 @@ textarea:focus-visible {
 
 .sidebar {
   height: 100vh;
-  max-height: 100vh;
-  position: absolute;
+  /* max-height: 100%; */
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 2;
@@ -121,7 +208,7 @@ textarea:focus-visible {
 .sidebar__drop-shadow {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   z-index: 1;
@@ -137,6 +224,7 @@ textarea:focus-visible {
 }
 
 .sidebar__content {
+  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
