@@ -9,9 +9,14 @@ const tasksContentEmpty = document.querySelector(".tasks__content-empty");
 const taskNameInput = document.querySelector("#taskName");
 const taskDescriptionInput = document.querySelector("#taskDescription");
 
+let editingTaskItem = null;
+
 tasksButton.addEventListener("click", () => {
   sidebar.classList.add("open");
   sidebarDropShadow.classList.add("open");
+  editingTaskItem = null;
+  taskNameInput.value = "";
+  taskDescriptionInput.value = "";
 });
 
 sidebarDropShadow.addEventListener("click", () => {
@@ -36,43 +41,47 @@ formSaveButton.addEventListener("click", (event) => {
   const taskDescription = taskDescriptionInput.value.trim();
 
   if (taskName) {
-    const taskItem = document.createElement("div");
-    taskItem.classList.add("tasks__item");
+    if (editingTaskItem) {
+      const taskInfo = editingTaskItem.querySelector(".tasks__item-info");
+      taskInfo.querySelector("h3").textContent = taskName;
+      taskInfo.querySelector("p").textContent = taskDescription;
 
-    const hasDescription = taskDescription ? "has-description" : "";
+      if (taskDescription) {
+        taskInfo.classList.add("has-description");
+        taskInfo.classList.remove("no-description");
+      } else {
+        taskInfo.classList.add("no-description");
+        taskInfo.classList.remove("has-description");
+      }
+    } else {
+      const taskItem = document.createElement("div");
+      taskItem.classList.add("tasks__item");
 
-    taskItem.innerHTML = `
-      <div class="tasks__item-header">
-        <button class="tasks__item-checkbox">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M24 2V22C24 22.5304 23.7893 23.0391 23.4142 23.4142C23.0391 23.7893 22.5304 24 22 24H2C1.46957 24 0.960859 23.7893 0.585786 23.4142C0.210714 23.0391 0 22.5304 0 22V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H22C22.5304 0 23.0391 0.210714 23.4142 0.585786C23.7893 0.960859 24 1.46957 24 2ZM22 22V2H2V22H22Z"
-              fill="#989898"
-            />
-          </svg>
-          <img src="./assets/CheckBg.svg" alt="" />
-          <img src="./assets/Check.svg" alt="" />
-        </button>
-        <div class="tasks__item-info ${hasDescription}">
-          <h3>${taskName}</h3>
-          <p>${taskDescription}</p>
+      const hasDescription = taskDescription
+        ? "has-description"
+        : "no-description";
+
+      taskItem.innerHTML = `
+        <div class="tasks__item-header">
+          <button class="tasks__item-checkbox">
+            <img src="./assets/Square.svg" alt="" />
+            <img src="./assets/SquareChecked.svg" alt="" />
+          </button>
+          <div class="tasks__item-info ${hasDescription}">
+            <h3>${taskName}</h3>
+            <p>${taskDescription}</p>
+          </div>
         </div>
-      </div>
-      <button type="button" class="tasks__item-edit-button">
-        <img src="./assets/Edit.svg" alt="Editar" />
-      </button>
-      <button type="button" class="tasks__item-delete-button">
-        <img src="./assets/Trash.svg" alt="Deletar" />
-      </button>
-    `;
+        <button type="button" class="tasks__item-edit-button">
+          <img src="./assets/Edit.svg" alt="Editar" />
+        </button>
+        <button type="button" class="tasks__item-delete-button">
+          <img src="./assets/Trash.svg" alt="Deletar" />
+        </button>
+      `;
 
-    tasksContent.appendChild(taskItem);
+      tasksContent.appendChild(taskItem);
+    }
 
     if (tasksContentEmpty) {
       tasksContentEmpty.style.display = "none";
@@ -91,9 +100,7 @@ document.addEventListener("click", (event) => {
     const header = event.target.closest(".tasks__item-header");
     header.classList.toggle("check");
   }
-});
 
-document.addEventListener("click", (event) => {
   if (event.target.closest(".tasks__item-delete-button")) {
     const taskItem = event.target.closest(".tasks__item");
     tasksContent.removeChild(taskItem);
@@ -102,4 +109,20 @@ document.addEventListener("click", (event) => {
       tasksContentEmpty.style.display = "flex";
     }
   }
+
+  if (event.target.closest(".tasks__item-edit-button")) {
+    const taskItem = event.target.closest(".tasks__item");
+    const taskName = taskItem.querySelector("h3").textContent;
+    const taskDescription = taskItem.querySelector("p").textContent;
+
+    editingTaskItem = taskItem;
+    taskNameInput.value = taskName;
+    taskDescriptionInput.value = taskDescription;
+
+    sidebar.classList.add("open");
+    sidebarDropShadow.classList.add("open");
+  }
 });
+
+//changes: edit task feature, update task check images, fix task item info gap on description status
+//next: change the sidebar header title, animations, tootips for buttons, responsive, local storage

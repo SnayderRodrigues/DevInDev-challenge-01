@@ -126,9 +126,12 @@ textarea:focus-visible {
 
 .tasks__item-checkbox {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.tasks__item-checkbox > img {
+.tasks__item-checkbox > img:nth-of-type(2) {
   opacity: 0;
   position: absolute;
   top: 50%;
@@ -136,12 +139,8 @@ textarea:focus-visible {
   transform: translate(-50%, -50%);
 }
 
-.tasks__item-header.check > .tasks__item-checkbox img {
+.tasks__item-header.check > .tasks__item-checkbox img:nth-of-type(2) {
   opacity: 1;
-}
-
-.tasks__item-header.check > .tasks__item-checkbox svg path {
-  fill: #4772fa;
 }
 
 .tasks__item-info {
@@ -152,6 +151,10 @@ textarea:focus-visible {
 
 .tasks__item-info.has-description {
   gap: 0.25rem;
+}
+
+.tasks__item-info.no-description {
+  gap: 0rem;
 }
 
 .tasks__item-header.check > .tasks__item-info > * {
