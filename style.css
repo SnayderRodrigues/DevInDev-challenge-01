@@ -48,7 +48,6 @@ button {
   background: none;
   padding: 0;
   border: none;
-  outline: none;
   cursor: pointer;
 }
 
@@ -335,14 +334,18 @@ textarea:focus-visible {
   transition: background-color 200ms ease-in-out;
 }
 
-.sidebar__form div:nth-of-type(3) .form__close-button:hover {
-  background-color: var(--black-300);
-}
-
 .sidebar__form div:nth-of-type(3) .form__save-button {
   background-color: var(--blue-400);
 }
 
 .sidebar__form div:nth-of-type(3) .form__save-button:hover {
   background-color: var(--blue-600);
+}
+
+.sidebar__form div:nth-of-type(3) .form__close-button {
+  order: -1;
+}
+
+.sidebar__form div:nth-of-type(3) .form__close-button:hover {
+  background-color: var(--black-300);
 }

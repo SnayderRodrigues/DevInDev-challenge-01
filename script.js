@@ -102,7 +102,7 @@ formSaveButton.addEventListener("click", (event) => {
 
       taskItem.innerHTML = `
         <div class="tasks__item-header">
-          <button class="tasks__item-checkbox">
+          <button class="tasks__item-checkbox" title="Marcar como concluída">
             <img src="./assets/Square.svg" alt="" />
             <img src="./assets/SquareChecked.svg" alt="" />
           </button>
@@ -111,10 +111,10 @@ formSaveButton.addEventListener("click", (event) => {
             <p>${taskDescription}</p>
           </div>
         </div>
-        <button type="button" class="tasks__item-edit-button">
+        <button type="button" class="tasks__item-edit-button" title="Editar">
           <img src="./assets/Edit.svg" alt="Editar" />
         </button>
-        <button type="button" class="tasks__item-delete-button">
+        <button type="button" class="tasks__item-delete-button" title="Excluir">
           <img src="./assets/Trash.svg" alt="Deletar" />
         </button>
       `;
