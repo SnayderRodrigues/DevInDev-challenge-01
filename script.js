@@ -12,6 +12,26 @@ const taskDescriptionInput = document.querySelector("#taskDescription");
 
 let editingTaskItem = null;
 
+function updateLocalStorage() {
+  const tasks = [];
+
+  document.querySelectorAll(".tasks__item").forEach((taskItem) => {
+    const taskName = taskItem.querySelector("h3").textContent;
+    const taskDescription = taskItem.querySelector("p").textContent;
+    const isChecked = taskItem
+      .querySelector(".tasks__item-header")
+      .classList.contains("check");
+
+    tasks.push({
+      name: taskName,
+      description: taskDescription,
+      checked: isChecked,
+    });
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
 tasksButton.addEventListener("click", () => {
   sidebar.classList.add("open");
   sidebarDropShadow.classList.add("open");
@@ -40,11 +60,13 @@ document.addEventListener("click", (event) => {
   if (event.target.closest(".tasks__item-header")) {
     const header = event.target.closest(".tasks__item-header");
     header.classList.toggle("check");
+    updateLocalStorage();
   }
 
   if (event.target.closest(".tasks__item-delete-button")) {
     const taskItem = event.target.closest(".tasks__item");
     tasksContent.removeChild(taskItem);
+    updateLocalStorage();
 
     if (tasksContent.children.length === 0 && tasksContentEmpty) {
       tasksContentEmpty.style.display = "flex";
@@ -102,7 +124,7 @@ formSaveButton.addEventListener("click", (event) => {
 
       taskItem.innerHTML = `
         <div class="tasks__item-header">
-          <button class="tasks__item-checkbox" title="Marcar como concluída">
+          <button class="tasks__item-checkbox">
             <img src="./assets/Square.svg" alt="" />
             <img src="./assets/SquareChecked.svg" alt="" />
           </button>
@@ -111,10 +133,10 @@ formSaveButton.addEventListener("click", (event) => {
             <p>${taskDescription}</p>
           </div>
         </div>
-        <button type="button" class="tasks__item-edit-button" title="Editar">
+        <button type="button" class="tasks__item-edit-button">
           <img src="./assets/Edit.svg" alt="Editar" />
         </button>
-        <button type="button" class="tasks__item-delete-button" title="Excluir">
+        <button type="button" class="tasks__item-delete-button">
           <img src="./assets/Trash.svg" alt="Deletar" />
         </button>
       `;
@@ -131,5 +153,43 @@ formSaveButton.addEventListener("click", (event) => {
 
     sidebar.classList.remove("open");
     sidebarDropShadow.classList.remove("open");
+
+    updateLocalStorage();
+  }
+});
+
+window.addEventListener("load", () => {
+  const tasks = JSON.parse(localStorage.getItem("tasks"));
+
+  if (tasks && tasks.length > 0) {
+    tasks.forEach(({ name, description, checked }) => {
+      const taskItem = document.createElement("div");
+      taskItem.classList.add("tasks__item");
+
+      const hasDescription = description ? "has-description" : "no-description";
+
+      taskItem.innerHTML = `
+        <div class="tasks__item-header ${checked ? "check" : ""}">
+          <button class="tasks__item-checkbox">
+            <img src="./assets/Square.svg" alt="" />
+            <img src="./assets/SquareChecked.svg" alt="" />
+          </button>
+          <div class="tasks__item-info ${hasDescription}">
+            <h3>${name}</h3>
+            <p>${description}</p>
+          </div>
+        </div>
+        <button type="button" class="tasks__item-edit-button">
+          <img src="./assets/Edit.svg" alt="Editar" />
+        </button>
+        <button type="button" class="tasks__item-delete-button">
+          <img src="./assets/Trash.svg" alt="Deletar" />
+        </button>
+      `;
+
+      tasksContent.appendChild(taskItem);
+    });
+
+    tasksContentEmpty.style.display = "none";
   }
 });
