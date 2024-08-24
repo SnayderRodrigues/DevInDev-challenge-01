@@ -13,6 +13,8 @@
   --blue-300: #4772fa;
   --blue-400: #1d46ca;
   --blue-600: #11276e;
+
+  --mg-relative: clamp(3rem, 2.090909090909091rem + 4.545454545454546vw, 5rem);
 }
 
 *,
@@ -22,14 +24,18 @@
 }
 
 body {
+  width: min(100% - 4rem, 1440px);
+  min-height: 100vh;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   color: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 7.375rem;
+  justify-content: center;
   background-color: var(--black-700);
+  margin: 0;
+  margin-inline: auto;
   overflow-x: hidden;
 }
 
@@ -68,7 +74,13 @@ textarea:focus-visible {
 }
 
 .logo {
-  margin-bottom: 5rem;
+  width: clamp(11.25rem, 9.71590909090909rem + 7.670454545454546vw, 14.625rem);
+  margin-top: var(--mg-relative);
+  margin-bottom: clamp(
+    2rem,
+    0.6363636363636365rem + 6.8181818181818175vw,
+    5rem
+  );
 }
 
 .tasks {
@@ -79,13 +91,30 @@ textarea:focus-visible {
   width: 622px;
 }
 
+@media (max-width: 768px) {
+  .tasks {
+    width: 100vw;
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .tasks {
+    padding: 0 1rem;
+  }
+}
+
 .tasks__header {
   width: 100%;
   border-bottom: 1px solid var(--black-400);
 }
 
 .tasks__header h1 {
-  font-size: 1.5rem;
+  font-size: clamp(
+    1.25rem,
+    1.1363636363636362rem + 0.5681818181818182vw,
+    1.5rem
+  );
   font-weight: 400;
   margin: 0;
   margin-bottom: 1.25rem;
@@ -96,7 +125,7 @@ textarea:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 5rem 0;
+  margin: var(--mg-relative) 0;
 }
 
 .tasks__content-empty span:first-of-type {
@@ -117,7 +146,7 @@ textarea:focus-visible {
 }
 
 .tasks__content:not(:empty) {
-  margin: 3rem 0;
+  margin: clamp(2rem, 1.5454545454545454rem + 2.272727272727273vw, 3rem) 0;
 }
 
 .tasks__item {
@@ -138,6 +167,12 @@ textarea:focus-visible {
   align-items: center;
   cursor: pointer;
   padding: 1rem 0 1rem 1.5rem;
+}
+
+@media (max-width: 425px) {
+  .tasks__item-header {
+    padding: 1rem 0 1rem 1rem;
+  }
 }
 
 .tasks__item-checkbox {
@@ -191,6 +226,12 @@ textarea:focus-visible {
   margin-right: 1.5rem;
 }
 
+@media (max-width: 425px) {
+  .tasks__item-delete-button {
+    margin-right: 1rem;
+  }
+}
+
 .tasks__button {
   display: flex;
   align-items: center;
@@ -198,11 +239,12 @@ textarea:focus-visible {
   gap: 0.25rem;
   color: var(--gray-500);
   width: 100%;
-  padding: 1.5rem 0;
+  padding: clamp(1.25rem, 1.1363636363636362rem + 0.5681818181818182vw, 1.5rem)
+    0;
   border: 0.125rem solid var(--gray-500);
   border-style: dashed;
   border-radius: 0.5rem;
-  margin-bottom: 5rem;
+  margin-bottom: var(--mg-relative);
 }
 
 .tasks__button:hover {
