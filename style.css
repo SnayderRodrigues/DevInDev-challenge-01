@@ -14,7 +14,11 @@
   --blue-400: #1d46ca;
   --blue-600: #11276e;
 
-  --mg-relative: clamp(3rem, 2.090909090909091rem + 4.545454545454546vw, 5rem);
+  --mg-relative: clamp(
+    2.5rem,
+    1.8181818181818183rem + 3.4090909090909087vw,
+    4rem
+  );
 }
 
 *,
@@ -76,11 +80,7 @@ textarea:focus-visible {
 .logo {
   width: clamp(11.25rem, 9.71590909090909rem + 7.670454545454546vw, 14.625rem);
   margin-top: var(--mg-relative);
-  margin-bottom: clamp(
-    2rem,
-    0.6363636363636365rem + 6.8181818181818175vw,
-    5rem
-  );
+  margin-bottom: clamp(2rem, 1.0909090909090908rem + 4.545454545454546vw, 4rem);
 }
 
 .tasks {
@@ -125,6 +125,7 @@ textarea:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   margin: var(--mg-relative) 0;
 }
 
