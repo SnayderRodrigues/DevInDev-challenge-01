@@ -6,6 +6,7 @@ const formCloseButton = document.querySelector(".form__close-button");
 const formSaveButton = document.querySelector(".form__save-button");
 const tasksContent = document.querySelector(".tasks__content");
 const tasksContentEmpty = document.querySelector(".tasks__content-empty");
+const taskAction = document.querySelector(".sidebar__action");
 const taskTitle = document.querySelector("#taskTitle");
 const taskNameInput = document.querySelector("#taskName");
 const taskDescriptionInput = document.querySelector("#taskDescription");
@@ -36,6 +37,7 @@ tasksButton.addEventListener("click", () => {
   sidebar.classList.add("open");
   sidebarDropShadow.classList.add("open");
   editingTaskItem = null;
+  taskAction.textContent = "Criar nova tarefa";
   taskTitle.textContent = "";
   taskNameInput.value = "";
   taskDescriptionInput.value = "";
@@ -79,6 +81,7 @@ document.addEventListener("click", (event) => {
     const taskDescription = taskItem.querySelector("p").textContent;
 
     editingTaskItem = taskItem;
+    taskAction.textContent = "Editar";
     taskTitle.textContent = taskName;
     taskNameInput.value = taskName;
     taskDescriptionInput.value = taskDescription;
