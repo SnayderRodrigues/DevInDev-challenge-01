@@ -223,6 +223,45 @@ textarea:focus-visible {
   color: var(--gray-400);
 }
 
+.tasks__item-edit-button,
+.tasks__item-delete-button {
+  position: relative;
+}
+
+.tasks__item-edit-button::after {
+  content: "Editar";
+}
+
+.tasks__item-delete-button::after {
+  content: "Excluir";
+}
+
+.tasks__item-edit-button::after,
+.tasks__item-delete-button::after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--black-700);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  opacity: 0;
+  transition: opacity 100ms linear;
+  user-select: none;
+  pointer-events: none;
+}
+
+.tasks__item-edit-button:hover::after {
+  opacity: 1;
+}
+
+.tasks__item-delete-button:hover::after {
+  opacity: 1;
+}
+
 .tasks__item-delete-button {
   margin-right: 1.5rem;
 }
