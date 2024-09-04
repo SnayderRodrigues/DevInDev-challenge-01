@@ -262,6 +262,15 @@ textarea:focus-visible {
   opacity: 1;
 }
 
+@media (max-width: 768px) {
+  .tasks__item-edit-button:hover::after {
+    opacity: 0;
+  }
+  .tasks__item-delete-button:hover::after {
+    opacity: 0;
+  }
+}
+
 .tasks__item-delete-button {
   margin-right: 1.5rem;
 }
