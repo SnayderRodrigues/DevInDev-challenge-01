@@ -246,9 +246,11 @@ textarea:focus-visible {
 .tasks__item-info h3 {
   font-size: 1rem;
   font-weight: 400;
+  word-break: break-all;
 }
 
 .tasks__item-info p {
+  word-break: break-all;
   font-size: 0.75rem;
   color: var(--gray-400);
 }
