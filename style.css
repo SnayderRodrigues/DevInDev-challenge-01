@@ -210,7 +210,6 @@ textarea:focus-visible {
   .tasks__item-checkbox:hover::after {
     opacity: 0;
   }
-
 }
 
 .tasks__item-checkbox > img:nth-of-type(2) {
@@ -246,11 +245,11 @@ textarea:focus-visible {
 .tasks__item-info h3 {
   font-size: 1rem;
   font-weight: 400;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .tasks__item-info p {
-  word-break: break-all;
+  word-break: break-word;
   font-size: 0.75rem;
   color: var(--gray-400);
 }
@@ -465,6 +464,8 @@ textarea:focus-visible {
     1.1363636363636362rem + 0.5681818181818182vw,
     1.5rem
   );
+  max-height: 4em;
+  overflow: hidden;
 }
 
 .sidebar__form {
