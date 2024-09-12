@@ -1,6 +1,7 @@
 const tasksButton = document.querySelector(".tasks__button");
 const sidebar = document.querySelector(".sidebar");
 const sidebarDropShadow = document.querySelector(".sidebar__drop-shadow");
+const savedTaskAnimation = document.querySelector(".saved-task-animation");
 const tasksCloseButton = document.querySelector(".sidebar__close-button");
 const formCloseButton = document.querySelector(".form__close-button");
 const formSaveButton = document.querySelector(".form__save-button");
@@ -36,6 +37,7 @@ function updateLocalStorage() {
 tasksButton.addEventListener("click", () => {
   sidebar.classList.add("open");
   sidebarDropShadow.classList.add("open");
+  savedTaskAnimation.classList.remove("on");
   editingTaskItem = null;
   taskAction.textContent = "Criar nova tarefa";
   taskTitle.textContent = "";
@@ -88,6 +90,7 @@ document.addEventListener("click", (event) => {
 
     sidebar.classList.add("open");
     sidebarDropShadow.classList.add("open");
+    savedTaskAnimation.classList.remove("on");
   }
 });
 
@@ -156,6 +159,7 @@ formSaveButton.addEventListener("click", (event) => {
 
     sidebar.classList.remove("open");
     sidebarDropShadow.classList.remove("open");
+    savedTaskAnimation.classList.add("on")
 
     updateLocalStorage();
   }
