@@ -43,6 +43,12 @@ body {
   overflow-x: hidden;
 }
 
+@media (max-width: 425px) {
+  body {
+    justify-content: flex-start;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -348,8 +354,7 @@ textarea:focus-visible {
   width: 100%;
   padding: clamp(1.25rem, 1.1363636363636362rem + 0.5681818181818182vw, 1.5rem)
     0;
-  border: 0.125rem solid var(--gray-500);
-  border-style: dashed;
+  border: 0.125rem dashed var(--gray-500);
   border-radius: 0.5rem;
   margin-bottom: var(--mg-relative);
 }
@@ -372,8 +377,7 @@ textarea:focus-visible {
 
 .tasks__button:hover {
   color: var(--white);
-  border: 0.125rem solid var(--white);
-  border-style: dashed;
+  border: 0.125rem dashed var(--white);
 }
 
 .tasks__button:hover svg path {
