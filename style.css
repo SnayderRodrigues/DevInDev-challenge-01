@@ -43,7 +43,7 @@ body {
   overflow-x: hidden;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   body {
     justify-content: flex-start;
   }
@@ -87,6 +87,13 @@ textarea:focus-visible {
   width: clamp(11.25rem, 9.71590909090909rem + 7.670454545454546vw, 14.625rem);
   margin-top: var(--mg-relative);
   margin-bottom: clamp(2rem, 1.0909090909090908rem + 4.545454545454546vw, 4rem);
+}
+
+@media (max-width: 768px) {
+  .logo {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .tasks {
@@ -147,7 +154,11 @@ textarea:focus-visible {
 }
 
 .tasks__content-empty span:first-of-type {
-  font-size: 1.5rem;
+  font-size: clamp(
+    1.25rem,
+    1.1363636363636362rem + 0.5681818181818182vw,
+    1.5rem
+  );
   font-weight: 500;
   margin-bottom: 0.25rem;
 }
@@ -169,6 +180,7 @@ textarea:focus-visible {
 
 @media (max-width: 768px) {
   .tasks__content:not(:empty) {
+    margin-top: 1rem;
     margin-bottom: 6.5rem;
   }
 }
@@ -359,6 +371,11 @@ textarea:focus-visible {
   margin-bottom: var(--mg-relative);
 }
 
+.tasks__button:hover {
+  color: var(--white);
+  border: 0.125rem dashed var(--white);
+}
+
 @media (max-width: 768px) {
   .tasks__button {
     position: fixed;
@@ -368,16 +385,15 @@ textarea:focus-visible {
     border-style: solid;
     margin-bottom: 1rem;
   }
+  .tasks__button:hover {
+    border: 0.125rem solid var(--white);
+  }
 }
+
 @media (max-width: 425px) {
   .tasks__button {
     width: calc(100% - 2rem);
   }
-}
-
-.tasks__button:hover {
-  color: var(--white);
-  border: 0.125rem dashed var(--white);
 }
 
 .tasks__button:hover svg path {
