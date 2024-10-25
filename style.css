@@ -451,11 +451,14 @@ textarea:focus-visible {
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
   filter: blur(4px);
+  opacity: 0;
   user-select: none;
   visibility: hidden;
+  transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
 }
 
 .sidebar__drop-shadow.open {
+  opacity: 1;
   visibility: visible;
 }
 
